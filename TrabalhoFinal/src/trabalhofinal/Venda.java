@@ -3,12 +3,12 @@ package trabalhofinal;
 import java.util.Date;
 import java.util.List;
 
-public class Venda {
+public class Venda implements MetodoPagamento{
     private int numVenda;
     private Vendedor vendedor;
     private Cliente cliente;
     private Date dataVenda;
-    private MetodoPagamento formPag;
+    private MetodoPagamento metoPag;
     private List<ItemVenda> itensVenda;
 
     public Venda() {
@@ -27,11 +27,48 @@ public class Venda {
     }
     
     public void getQtdItens(){
+        float qtd = 0;
+        for(ItemVenda itemV: itensVenda){
+            qtd = itemV.getQuantidade();
+        }
+        System.out.println("A quantidade total e de: " + qtd + " produtos.");
+    }
+    
+    public void pagar(double valor, FormaPagamento formPag){
+        if(formPag == formPag.DINHEIRO){
+            pagarDinheiro(valor);
+        } if(formPag == formPag.PIX){
+            pagarPix(valor);
+        } else{
+            pagarCartao(valor);
+        }
         
     }
     
-    public void pagar(){
-        
+    @Override
+    public void pagarDinheiro(double dinheiro) {
+        FormaPagamento formPag = FormaPagamento.DINHEIRO;
+        double conta =0;
+        double troco;
+        conta = dinheiro - getValorTotal();
+        troco = conta;
+        System.out.println("Você receberá o troco de: R$" + troco);
+    }
+
+    @Override
+    public void pagarPix(double valor) {
+        FormaPagamento formPag = FormaPagamento.PIX;
+        double conta =0;
+        conta = valor - getValorTotal();
+        System.out.println("Item comprado com sucesso!");
+    }
+
+    @Override
+    public void pagarCartao(double valor) {
+        FormaPagamento formPag = FormaPagamento.CARTAO;
+        double conta =0;
+        conta = valor - getValorTotal();
+        System.out.println("Item comprado com sucesso!");
     }
     
     
@@ -55,12 +92,16 @@ public class Venda {
         return dataVenda;
     }
 
-    public MetodoPagamento getFormPag() {
-        return formPag;
+    public MetodoPagamento getMetoPag() {
+        return metoPag;
     }
 
-    public void setFormPag(MetodoPagamento formPag) {
-        this.formPag = formPag;
+    public void setMetoPag(MetodoPagamento metoPag) {
+        this.metoPag = metoPag;
+    }
+
+    public int getNumVenda() {
+        return numVenda;
     }
 
     public List<ItemVenda> getItensVenda() {
@@ -69,8 +110,5 @@ public class Venda {
 
     public void setItensVenda(List<ItemVenda> itensVenda) {
         this.itensVenda = itensVenda;
-    }
-
-    
-    
+    }   
 }
