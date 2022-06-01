@@ -2,11 +2,11 @@ package trabalhofinal;
 
 public interface MetodoPagamento {
     
-    public void pagarDinheiro();
+    public void pagarDinheiro(double dinheiro);
     
-    public void pagarPix();
+    public void pagarPix(double valor);
     
-    public void pagarCartao();
+    public void pagarCartao(double valor);
     
     
 }
