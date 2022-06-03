@@ -1,4 +1,4 @@
-package trabalhofinal;
+package trabalhofinal.modelo;
 
 public class Pessoa {
     protected int id;

@@ -1,4 +1,4 @@
-package trabalhofinal;
+package trabalhofinal.interfaca;
 
 public interface MetodoPagamento {
     

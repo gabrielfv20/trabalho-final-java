@@ -1,4 +1,4 @@
-package trabalhofinal;
+package trabalhofinal.modelo;
 
 public class Item {
     private int codProduto;

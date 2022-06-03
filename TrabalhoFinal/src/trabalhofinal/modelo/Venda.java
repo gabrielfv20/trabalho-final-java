@@ -1,7 +1,9 @@
-package trabalhofinal;
+package trabalhofinal.modelo;
 
 import java.util.Date;
 import java.util.List;
+import trabalhofinal.Enum.FormaPagamento;
+import trabalhofinal.interfaca.MetodoPagamento;
 
 public class Venda implements MetodoPagamento{
     private int numVenda;
@@ -23,7 +25,7 @@ public class Venda implements MetodoPagamento{
     }
     
     public void getEndEntrega(){
-        System.out.println("Endereço de Entrega: " + cliente.getEnd());  
+        System.out.println("Endereço de Entrega: " + cliente.getEnd());
     }
     
     public void getQtdItens(){
