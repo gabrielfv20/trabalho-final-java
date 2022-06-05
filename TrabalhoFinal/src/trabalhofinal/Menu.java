@@ -16,6 +16,7 @@ public class Menu {
         ClienteDao clienteDAO = new ClienteDao();
         VendedorDao vendedorDAO = new VendedorDao();
         ItemDao itemDAO = new ItemDao();
+        String  pesquisaCliente="";
         Cliente cli = null;
         Vendedor ven = null;
         Item item = null;
@@ -24,13 +25,14 @@ public class Menu {
         List<Item> listaItem = new ArrayList();
        String cadastro="\nDigite 1 para cadastar cliente "
                + "\nDigite 2 para cadastar vendedor"
-               + "\nDigite 3 para cadastar item ";
+               + "\nDigite 3 para cadastar item "
+               + "\nDigite 4 para cadastrar venda";
        String deletar = "\nDigite 1 para deletar cliente"
                + "\nDigite 2 para deletar vendedor"
                + "\nDigite 3 para deletar item";
        String alterar = "\nDigite 1 para alterar cliente"
                + "\nDigite 2 para alterar vendedor"
-               + "\nDigite 3 para alterar item"; 
+               + "\nDigite 3 para alterar item";
        String pesquisar ="\nDigite 1 para pesquisar lista de clientes"
                + "\nDigite 2 para pesquisar lista de vendedores"
                + "\nDigite 3 para pesquisar lista de itens";
@@ -66,6 +68,7 @@ public class Menu {
                         ven.setSalario(sc.nextFloat());
                         vendedorDAO.insert(ven);   
                     }else{
+                        if(op==3){
                         item = new Item();
                         System.out.println("Digite o nome do item : ");
                         item.setNome(sc.next());
@@ -74,7 +77,26 @@ public class Menu {
                         System.out.println("Digite o valor");
                         item.setValor(sc.nextFloat());
                         itemDAO.insert(item);
-                    }
+                        }else{
+                            Venda venda = new Venda();
+                            ItemVenda itemvenda = new ItemVenda();
+                            Item item1 = new Item();
+
+                            item1.setNome("refri");
+                            item1.setValor(5);
+                            itemvenda.setItem(item1);
+                            itemvenda.setQuantidade(2);
+                            venda.getItensVenda().add(itemvenda);
+                            venda.getCliente().setNome("Gabriel");
+                            venda.getCliente().setEndereco("Rua 9 casa 12");
+                            venda.getVendedor().setNome("Lucas");
+                            System.out.println(venda);
+                            System.out.println(venda.getValorTotal());
+                            venda.getEndEntrega();
+                            venda.getQtdItens();
+                            venda.pagar(15, formaPagamento.DINHEIRO);
+                            }
+                        }
                     }
                     break;
                 case 2:
@@ -136,9 +158,9 @@ public class Menu {
                         System.out.println("Digite o novo valor da unidade: ");
                         item.setUnidade(sc.nextFloat());
                         System.out.println("Digite o novo valor do item: ");
-                        item.setValor(op);
+                        item.setValor(sc.nextFloat());
                         itemDAO.update(item);
-                        }   
+                    }   
                     }
                     break;
                 case 4:
@@ -146,10 +168,10 @@ public class Menu {
                     op = sc.nextInt();
                     
                     if(op==1){
-                       listaCliente = clienteDAO.select();
-                    
+                      listaCliente = clienteDAO.select();
+
                     for(Cliente cliAux : listaCliente){
-                      String  pesquisaCliente = "\nId: " + cliAux.getId() + "\nNome : " + cliAux.getNome() + "\nCPF: " + cliAux.getCpf()
+                      pesquisaCliente = "\nNome : " + cliAux.getNome() + "\nCPF: " + cliAux.getCpf()
                                 + "\nEndereco: " + cliAux.getEndereco();     
                       System.out.println(pesquisaCliente);
                     } 
@@ -159,20 +181,19 @@ public class Menu {
                       listaVendedor = vendedorDAO.select();
                     
                     for(Vendedor venAux : listaVendedor){
-                      String  pesquisaVendedor = "\nId: " + venAux.getId() + "\nNome : " + venAux.getNome() + "\nCPF: " + venAux.getCpf()
+                      String  pesquisaVendedor = "\nNome : " + venAux.getNome() + "\nCPF: " + venAux.getCpf()
                                 + "\nSalario: " + venAux.getSalario();
-                        System.out.println(pesquisaVendedor);
-                                
+                        System.out.println(pesquisaVendedor);          
                     }  
                     }else{
                        listaItem = itemDAO.select();
                     
                     for(Item itemAux : listaItem){
-                      String  pesquisaItem = "\nId: " + itemAux.getId() + "\nNome : " + itemAux.getNome() + "\nUnidade: " + itemAux.getUnidade()
+                      String  pesquisaItem = "\nNome : " + itemAux.getNome() + "\nUnidade: " + itemAux.getUnidade()
                                 + "\nValor: " + itemAux.getValor();
-                                System.out.println(pesquisaItem);
-                            } 
-                        }   
+                       System.out.println(pesquisaItem);          
+                    } 
+                    }   
                     }
             }
             

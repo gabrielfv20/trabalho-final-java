@@ -7,9 +7,14 @@ public class ItemVenda {
     private int quantidade;
     private Venda venda;
 
-    public ItemVenda() {
+    public ItemVenda(int quantidade) {
+        this.quantidade = quantidade;
+        item = new Item();
+        venda = new Venda();
     }
-
+    public ItemVenda(){
+        
+    }
     public Item getItem() {
         return item;
     }
@@ -32,6 +37,11 @@ public class ItemVenda {
 
     public void setVenda(Venda venda) {
         this.venda = venda;
+    }
+
+    @Override
+    public String toString() {
+        return "ItemVenda{" + "item=" + item + ", quantidade=" + quantidade + ", venda=" + venda + '}';
     }
     
     

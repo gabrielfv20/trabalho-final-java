@@ -15,6 +15,13 @@ public class Item {
     private float valor;
     private int id;
 
+    public Item(String nome, float valor, int id) {
+        this.nome = nome;
+        this.valor = valor;
+        this.id = id;
+    }
+
+    
     public Item() {
     }
 

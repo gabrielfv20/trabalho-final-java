@@ -2,7 +2,7 @@
 package trabalhofinal;
 
 
-public class Vendedor {
+public class Vendedor extends Pessoa{
     private int id;
     private String nome;
     private String cpf;

@@ -2,7 +2,7 @@
 package trabalhofinal;
 
 
-public class Cliente{
+public class Cliente extends Pessoa{
     private int id;
     private String nome;
     private String cpf;
@@ -14,10 +14,9 @@ public class Cliente{
         this.endereco = endereco;
     }
 
-    
-    
+
     public Cliente() {
-        
+
     }
 
     public int getId() {

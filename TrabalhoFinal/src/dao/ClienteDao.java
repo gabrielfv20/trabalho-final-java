@@ -5,6 +5,7 @@
  */
 package dao;
 
+import Conexao.Conexao;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -44,7 +45,7 @@ public class ClienteDao implements Dao{
             PreparedStatement ps = Conexao.getConexao().prepareStatement(sql);
             ps.setString(1, p.getNome());
             ps.setString(2, p.getCpf());
-            ps.setString(3, p.getEndereco());         
+            ps.setString(3, p.getEndereco());
             ps.setInt(4, p.getId());
             ps.execute();
         } catch (SQLException e) {
@@ -69,7 +70,9 @@ public class ClienteDao implements Dao{
 
     @Override
     public Object select(int i) {
+        
         return null;
+        
     }
 
     @Override

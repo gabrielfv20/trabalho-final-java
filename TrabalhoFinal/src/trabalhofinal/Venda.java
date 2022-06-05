@@ -1,6 +1,7 @@
 
 package trabalhofinal;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -12,10 +13,13 @@ public class Venda implements MetodoPagamento{
     private Cliente cliente;
     private List<ItemVenda> itensVenda;
     private Date data;
-    
 
     public Venda() {
-        
+        vendedor = new Vendedor();
+        cliente = new Cliente();
+        itensVenda = new ArrayList<>();
+//        itemvenda = new ItemVenda();
+        data = new Date();
     }
 
     public MetodoPagamento getFormapagamento() {
@@ -42,14 +46,15 @@ public class Venda implements MetodoPagamento{
         this.cliente = cliente;
     }
 
-    public List<ItemVenda> getItens() {
+    public List<ItemVenda> getItensVenda() {
         return itensVenda;
     }
 
-     public void setItens(List<ItemVenda> itens) {
+    public void setItensVenda(List<ItemVenda> itensVenda) {
         this.itensVenda = itensVenda;
     }
-    
+
+   
     public Date getData() {
         return data;
     }
@@ -76,14 +81,14 @@ public class Venda implements MetodoPagamento{
         
     }
     
-    public void pagar(double valor, formaPagamento formapagamento ){
+    public void pagar(double valorPago, formaPagamento formapagamento ){
         if(formapagamento == formapagamento.DINHEIRO){
-            pagarDinheiro(valor);
+            pagarDinheiro(valorPago);
         }if(formapagamento == formapagamento.CARTAO){
-            pagarCartao(valor);
+            pagarCartao(valorPago);
             
         }else{
-            pagarPix(valor);
+            pagarPix(valorPago);
         }
        
             
@@ -114,6 +119,11 @@ public class Venda implements MetodoPagamento{
         conta = valor - getValorTotal();
         System.out.println("Compra finalizada");
         
+    }
+
+    @Override
+    public String toString() {
+        return "Venda{" + "numVenda=" + numVenda + ", formapagamento=" + formapagamento + ", vendedor=" + vendedor + ", cliente=" + cliente + ", itensVenda=" + itensVenda + ", data=" + data + '}';
     }
     
     
